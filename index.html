@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div> 
+        <p id="h">This is page for localstorage.</p>
+        <label for="name">Name</label>
+        <br>
+        <input name="name" type="text" id="name"/>
+        <br>
+        <label for="email">Email</label>
+        <br>
+        <input name="email" type="text" id="email"/>
+        <br>
+        <label for="number">Phone Number</label>
+        <br>
+        <input name="number" type="number" id="num"/>
+        <br>
+        <button id="btn" onclick="fun()">Ok</button>
+        <br>
+        <br>
+        <ul id="list">
+        
+        </ul>
+    </div>
+    <script>
+    function fun()
+    {
+        const name=document.getElementById('name').value;
+        const email=document.getElementById('email').value;
+        const num=document.getElementById('num').value;
+        if(name==="" || email ==="" || num==="") 
+        {
+            alert("fill the form");
+            return;
+        }
+        const obj={
+            name: name,
+            email: email,
+            num: num
+        }
+      localStorage.setItem(email,JSON.stringify(obj));
+      const ele=document.createElement('li');
+      ele.appendChild(document.createTextNode(name+" "));
+      ele.appendChild(document.createTextNode(email+" "));
+     ele.appendChild(document.createTextNode(num+" "));
+     const btn=document.createElement('button');
+     btn.addEventListener('click',()=>{
+        localStorage.removeItem(email);
+        ele.remove();
+     })
+     btn.innerHTML="delete";
+     btn.classList="btn";
+
+     const edit=document.createElement('button');
+     edit.innerHTML='edit';
+     edit.addEventListener('click',()=>{
+        localStorage.removeItem(obj.email);
+        parentElem.removeChild(childElem);
+        document.getElementById('usernameInputTag').value=obj.name;
+        document.getElementById('emailInputTag').value=obj.email;
+        document.getElementById('phonenumber').value=obj.num;
+     })
+     ele.appendChild(btn);
+     ele.appendChild(edit);
+      const list=document.getElementById('list');
+      list.appendChild(ele);
+        
+    }
+    
+    
+
+    </script>
+</body>
+</html>
